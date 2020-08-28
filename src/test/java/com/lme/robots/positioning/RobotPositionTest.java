@@ -18,8 +18,8 @@ public class RobotPositionTest {
         final RobotPosition finalPosition = initialPosition
                 .turnLeft()
                 .moveForward();
-        assertThat(finalPosition.getPosition().getX() , equalTo(0));
-        assertThat(finalPosition.getPosition().getY() , equalTo(1));
+        assertThat(finalPosition.getCoordinates().getX() , equalTo(0));
+        assertThat(finalPosition.getCoordinates().getY() , equalTo(1));
         assertThat(finalPosition.getOrientation() , equalTo(W));
     }
 
@@ -30,8 +30,8 @@ public class RobotPositionTest {
                 .moveForward()
                 .turnLeft()
                 .moveForward();
-        assertThat(finalPosition.getPosition().getX() , equalTo(2));
-        assertThat(finalPosition.getPosition().getY() , equalTo(2));
+        assertThat(finalPosition.getCoordinates().getX() , equalTo(2));
+        assertThat(finalPosition.getCoordinates().getY() , equalTo(2));
         assertThat(finalPosition.getOrientation() , equalTo(N));
     }
 
@@ -44,8 +44,8 @@ public class RobotPositionTest {
                 .moveForward()
                 .turnLeft()
                 .moveForward();
-        assertThat(finalPosition.getPosition().getX() , equalTo(3));
-        assertThat(finalPosition.getPosition().getY() , equalTo(0));
+        assertThat(finalPosition.getCoordinates().getX() , equalTo(3));
+        assertThat(finalPosition.getCoordinates().getY() , equalTo(0));
         assertThat(finalPosition.getOrientation() , equalTo(E));
     }
 

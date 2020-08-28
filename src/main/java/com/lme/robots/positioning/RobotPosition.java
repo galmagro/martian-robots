@@ -9,19 +9,19 @@ import com.lme.robots.geom.Coordinates;
  */
 public class RobotPosition {
 
-    private final Coordinates position;
+    private final Coordinates coordinates;
 
     private final Orientation orientation;
 
-    public RobotPosition(final Coordinates position, final Orientation orientation) {
-        this.position = Optional.ofNullable(position)
-                .orElseThrow(() -> new IllegalArgumentException("mandatory robot position"));
+    public RobotPosition(final Coordinates coordinates, final Orientation orientation) {
+        this.coordinates = Optional.ofNullable(coordinates)
+                .orElseThrow(() -> new IllegalArgumentException("mandatory robot coordinates"));
         this.orientation = Optional.ofNullable(orientation)
                 .orElseThrow(() -> new IllegalArgumentException("mandatory robot orientation"));
     }
 
-    public Coordinates getPosition() {
-        return position;
+    public Coordinates getCoordinates() {
+        return coordinates;
     }
 
     public Orientation getOrientation() {
@@ -29,35 +29,35 @@ public class RobotPosition {
     }
 
     public RobotPosition turnLeft() {
-        return new RobotPosition(getPosition(), orientation.getLeft());
+        return new RobotPosition(getCoordinates(), orientation.getLeft());
     }
 
     public RobotPosition turnRight() {
-        return new RobotPosition(getPosition(), orientation.getRight());
+        return new RobotPosition(getCoordinates(), orientation.getRight());
     }
 
     public RobotPosition moveForward() {
         int newX, newY;
         switch (orientation) {
             case N:
-                newY = position.getY() + 1;
-                newX = position.getX();
+                newY = coordinates.getY() + 1;
+                newX = coordinates.getX();
                 break;
             case S:
-                newY = position.getY() - 1;
-                newX = position.getX();
+                newY = coordinates.getY() - 1;
+                newX = coordinates.getX();
                 break;
             case E:
-                newX = position.getX() + 1;
-                newY = position.getY();
+                newX = coordinates.getX() + 1;
+                newY = coordinates.getY();
                 break;
             case W:
-                newX = position.getX() - 1;
-                newY = position.getY();
+                newX = coordinates.getX() - 1;
+                newY = coordinates.getY();
                 break;
             default:
-                newX = position.getX();
-                newY = position.getY();
+                newX = coordinates.getX();
+                newY = coordinates.getY();
         }
 
         return new RobotPosition(Coordinates.of(newX, newY), orientation);
