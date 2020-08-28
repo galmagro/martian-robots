@@ -2,6 +2,7 @@ package com.lme.robots;
 
 import java.util.Optional;
 
+import com.lme.robots.geom.Coordinates;
 import com.lme.robots.positioning.RobotPosition;
 
 public class Robot {
@@ -32,5 +33,15 @@ public class Robot {
 
     void setLost(final boolean isLost) {
         this.lost = isLost;
+    }
+
+    //could be moved to a separate logic to handle printing logic
+    public String getRobotOutput() {
+        final Coordinates coordinates = getRobotPosition().getCoordinates();
+        if(isLost()){
+            return String.format("%d %d %s LOST", coordinates.getX(), coordinates.getY(), getRobotPosition().getOrientation());
+        } else {
+            return String.format("%d %d %s", coordinates.getX(), coordinates.getY(), getRobotPosition().getOrientation());
+        }
     }
 }

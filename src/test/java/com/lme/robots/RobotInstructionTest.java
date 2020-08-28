@@ -2,6 +2,7 @@ package com.lme.robots;
 
 import static com.lme.robots.positioning.Orientation.E;
 import static com.lme.robots.positioning.Orientation.N;
+import static com.lme.robots.positioning.Orientation.S;
 import static com.lme.robots.positioning.Orientation.W;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -52,6 +53,31 @@ public class RobotInstructionTest {
         assertThat(finalPosition.getOrientation(), equalTo(E));
         assertThat(finalPosition.getCoordinates().getX(), equalTo(1));
         assertThat(finalPosition.getCoordinates().getY(), equalTo(1));
+    }
+
+    @Test
+    public void testRobotInstructions2() {
+        final Robot robot = surface.deployRobot(new RobotPosition(Coordinates.of(0,3), W));
+        //LL FF FL FL FL
+        robot.executeInstruction(new TurnLeft());
+        robot.executeInstruction(new TurnLeft());
+
+        robot.executeInstruction(new MoveForward(surface));
+        robot.executeInstruction(new MoveForward(surface));
+
+        robot.executeInstruction(new MoveForward(surface));
+        robot.executeInstruction(new TurnLeft());
+
+        robot.executeInstruction(new MoveForward(surface));
+        robot.executeInstruction(new TurnLeft());
+
+        robot.executeInstruction(new MoveForward(surface));
+        robot.executeInstruction(new TurnLeft());
+
+        final RobotPosition finalPosition = robot.getRobotPosition();
+        assertThat(finalPosition.getOrientation(), equalTo(N));
+        assertThat(finalPosition.getCoordinates().getX(), equalTo(3));
+        assertThat(finalPosition.getCoordinates().getY(), equalTo(3));
     }
 
     @Test
