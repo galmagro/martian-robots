@@ -22,11 +22,15 @@ public class Robot {
         return lost;
     }
 
-    private void turnLeft() {
-        this.robotPosition = this.robotPosition.turnLeft();
+    public void executeInstruction(final RobotInstruction instruction) {
+        instruction.execute(this);
     }
 
-    private void turnRight() {
-        this.robotPosition = this.robotPosition.turnRight();
+    void setRobotPosition(final RobotPosition newPosition) {
+        this.robotPosition = newPosition;
+    }
+
+    void setLost(final boolean isLost) {
+        this.lost = isLost;
     }
 }
